@@ -1,19 +1,22 @@
 from utils import *
 
+
 def resolve(estado, listaPassos):
 
-    for i in range(len(estado)):
-        if estado[i] == '_':
-            break
+    estado = list(estado)
 
-    for passo in range(len(listaPassos)):
+    for passo in listaPassos:
+        for i in range(len(estado)):
+            if estado[i] == '_':
+                break
+
         if passo == "direita":
             estado[i], estado[i+1] = estado[i+1], estado[i]
         elif passo == "esquerda":
             estado[i], estado[i-1] = estado[i-1], estado[i]
-        elif passo == "cima":
+        elif passo == "acima":
             estado[i], estado[i-3] = estado[i-3], estado[i]
         elif passo == "abaixo":
             estado[i], estado[i+3] = estado[i+3], estado[i]
 
-    return estado
+    return "".join(estado)

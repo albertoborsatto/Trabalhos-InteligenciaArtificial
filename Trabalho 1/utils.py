@@ -17,3 +17,16 @@ def swap(entrada, i, j):
     entrada = list(entrada)
     entrada[i], entrada[j] = entrada[j], entrada[i]
     return "".join(entrada)
+
+
+def caminho(nodo):
+
+    listaCaminho = []
+
+    while nodo.pai is not None:
+        listaCaminho.append(nodo.acao)
+        nodo = nodo.pai
+
+    listaCaminho.reverse()
+
+    return listaCaminho
