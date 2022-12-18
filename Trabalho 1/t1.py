@@ -1,7 +1,8 @@
 from utils import *
 from collections import deque
 from teste import *
-
+from heapq import *
+from queue import PriorityQueue
 
 def resolve(estado, listaPassos):
 
@@ -122,11 +123,59 @@ def busca_grafo(string, objetivo):
 
     return None
 
+def hamming(str, objetivo):
+
+    counter = 0
+    for i in range(len(str)):
+        if str[i]!=objetivo[i]:
+            counter += 1
+
+    return counter     
+
+
+def manhattan(str, objetivo): 
+
+    str_matriz=stringToMatrix3x3(str)
+    objetivo_matriz=stringToMatrix3x3(objetivo)
+    counter = 0
+    for i in range(len(str_matriz)):
+        for j in range(len(str_matriz[i])):
+            for k in range(len(objetivo_matriz)):
+                for l in range(len(objetivo_matriz[k])):
+                    if(str_matriz[i][j]==objetivo_matriz[k][l] and str_matriz[i][j]!='_'):
+                        counter+=abs(i-k)+abs(j-l)
+                        break
+    return counter       
+
+def busca_grafo_heurisitica(string, objetivo):
+    
+    eXplorados = set()
+    Fronteira = []
+    heappush(Fronteira, (0, 0, Nodo(string, None, None, 0)))
+
+    counter=0
+    while (len(Fronteira) != 0):
+        v = heappop(Fronteira)[2]
+
+        if (v.estado == objetivo):
+            return caminho(v)
+
+        if (v.estado not in eXplorados):
+            eXplorados.add(v.estado)
+            for nodo in expande(v):
+                counter+=1
+                tup = (nodo.custo+manhattan(nodo.estado, objetivo), counter, nodo)
+                heappush(Fronteira, tup)
+                
+
+    return None
+
 
 #Pai = Nodo("123456_78", 0, None, 0)
 #expande(Pai)
 
 #print(busca_grafo("2_3541687", "12345678_"))
 
+#print(resolve("2_3541687", busca_grafo_heurisitica("2_3541687", "12345678_")))
 
-print(resolve("2_3541687", busca_grafo("2_3541687", "12345678_")))
+#print(resolve("2_3541687", busca_grafo("2_3541687", "12345678_")))
