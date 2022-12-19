@@ -93,6 +93,7 @@ def bfs(estado):
     eXplorados = set()
     Fronteira = deque([Nodo(estado, None, None, 0)])
     count = 0
+    count2 = 0
 
     inicio = time.time()
     while (len(Fronteira) != 0):
@@ -101,11 +102,13 @@ def bfs(estado):
         if (v.estado == "12345678_"):
             final = time.time()
             print(f'Expandidos bfs => {count}')
+            print(f'Custo bfs => {count2}')
             print(f'Tempo bfs => {final-inicio}\n')
             return caminho(v)
 
         if (v.estado not in eXplorados):
             count += 1
+            count2 += v.custo
             eXplorados.add(v.estado)
             Fronteira.extend(expande(v))
 
@@ -125,6 +128,7 @@ def dfs(estado):
     eXplorados = set()
     Fronteira = deque([Nodo(estado, None, None, 0)])
     count = 0
+    count2 = 0
 
     inicio = time.time()
     while (len(Fronteira) != 0):
@@ -132,12 +136,14 @@ def dfs(estado):
 
         if (v.estado == "12345678_"):
             final = time.time()
-            print(f'Expandido dfs => {count}')
+            print(f'Expandidos dfs => {count}')
+            print(f'Custo dfs => {count2}')
             print(f'Tempo dfs => {final-inicio}\n')
             return caminho(v)
 
         if (v.estado not in eXplorados):
             count += 1
+            count2 += v.custo
             eXplorados.add(v.estado)
             Fronteira.extend(expande(v))
 
@@ -167,6 +173,7 @@ def astar_hamming(estado):
     Fronteira = []
     heappush(Fronteira, (0, 0, Nodo(estado, None, None, 0)))
     count = 0
+    count2 = 0
     counter=0
 
     inicio = time.time()
@@ -175,12 +182,14 @@ def astar_hamming(estado):
 
         if (v.estado == "12345678_"):
             final = time.time()
-            print(f'Explorados hamming => {count}')
+            print(f'Expandidos hamming => {count}')
+            print(f'Custo hamming => {count2}')
             print(f'Tempo hamming => {final-inicio}\n')
             return caminho(v)
 
         if (v.estado not in eXplorados):
             count += 1
+            count2 += v.custo
             eXplorados.add(v.estado)
             for nodo in expande(v):
                 counter+=1
@@ -221,6 +230,7 @@ def astar_manhattan(estado):
     heappush(Fronteira, (0, 0, Nodo(estado, None, None, 0)))
     counter=0
     count = 0
+    count2 = 0
 
     inicio = time.time()
     while (len(Fronteira) != 0):
@@ -228,12 +238,14 @@ def astar_manhattan(estado):
 
         if (v.estado == "12345678_"):
             final = time.time()
-            print(f'Explorados manhattan => {count}')
+            print(f'Expandidos manhattan => {count}')
+            print(f'Custo manhattan => {count2}')
             print(f'Tempo manhattan => {final - inicio}\n')
             return caminho(v)
 
         if (v.estado not in eXplorados):
             count += 1
+            count2 += v.custo
             eXplorados.add(v.estado)
             for nodo in expande(v):
                 counter+=1
