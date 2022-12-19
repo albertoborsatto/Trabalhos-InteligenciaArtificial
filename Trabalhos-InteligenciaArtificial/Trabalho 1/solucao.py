@@ -92,23 +92,23 @@ def bfs(estado):
     # substituir a linha abaixo pelo seu codigo
     eXplorados = set()
     Fronteira = deque([Nodo(estado, None, None, 0)])
-    count = 0
-    count2 = 0
+    #count = 0
+    #count2 = 0
 
-    inicio = time.time()
+    #inicio = time.time()
     while (len(Fronteira) != 0):
         v = Fronteira.popleft()
         
         if (v.estado == "12345678_"):
-            final = time.time()
-            print(f'Expandidos bfs => {count}')
-            print(f'Custo bfs => {count2}')
-            print(f'Tempo bfs => {final-inicio}\n')
+            #final = time.time()
+            #print(f'Expandidos bfs => {count}')
+            #print(f'Custo bfs => {count2}')
+            #print(f'Tempo bfs => {final-inicio}\n')
             return caminho(v)
 
         if (v.estado not in eXplorados):
-            count += 1
-            count2 += v.custo
+            #count += 1
+            #count2 += v.custo
             eXplorados.add(v.estado)
             Fronteira.extend(expande(v))
 
@@ -127,23 +127,23 @@ def dfs(estado):
     # substituir a linha abaixo pelo seu codigo
     eXplorados = set()
     Fronteira = deque([Nodo(estado, None, None, 0)])
-    count = 0
-    count2 = 0
+    #count = 0
+    #count2 = 0
 
-    inicio = time.time()
+    #inicio = time.time()
     while (len(Fronteira) != 0):
         v = Fronteira.pop()
 
         if (v.estado == "12345678_"):
-            final = time.time()
-            print(f'Expandidos dfs => {count}')
-            print(f'Custo dfs => {count2}')
-            print(f'Tempo dfs => {final-inicio}\n')
+            #final = time.time()
+            #print(f'Expandidos dfs => {count}')
+            #print(f'Custo dfs => {count2}')
+            #print(f'Tempo dfs => {final-inicio}\n')
             return caminho(v)
 
         if (v.estado not in eXplorados):
-            count += 1
-            count2 += v.custo
+            #count += 1
+            #count2 += v.custo
             eXplorados.add(v.estado)
             Fronteira.extend(expande(v))
 
@@ -172,24 +172,24 @@ def astar_hamming(estado):
     eXplorados = set()
     Fronteira = []
     heappush(Fronteira, (0, 0, Nodo(estado, None, None, 0)))
-    count = 0
-    count2 = 0
+    #count = 0
+    #count2 = 0
     counter=0
 
-    inicio = time.time()
+    #inicio = time.time()
     while (len(Fronteira) != 0):
         v = heappop(Fronteira)[2]
 
         if (v.estado == "12345678_"):
-            final = time.time()
-            print(f'Expandidos hamming => {count}')
-            print(f'Custo hamming => {count2}')
-            print(f'Tempo hamming => {final-inicio}\n')
+            #final = time.time()
+            #print(f'Expandidos hamming => {count}')
+            #print(f'Custo hamming => {count2}')
+            #print(f'Tempo hamming => {final-inicio}\n')
             return caminho(v)
 
         if (v.estado not in eXplorados):
-            count += 1
-            count2 += v.custo
+            #count += 1
+            #count2 += v.custo
             eXplorados.add(v.estado)
             for nodo in expande(v):
                 counter+=1
@@ -229,23 +229,23 @@ def astar_manhattan(estado):
     Fronteira = []
     heappush(Fronteira, (0, 0, Nodo(estado, None, None, 0)))
     counter=0
-    count = 0
-    count2 = 0
+    #count = 0
+    #count2 = 0
 
-    inicio = time.time()
+    #inicio = time.time()
     while (len(Fronteira) != 0):
         v = heappop(Fronteira)[2]
 
         if (v.estado == "12345678_"):
-            final = time.time()
-            print(f'Expandidos manhattan => {count}')
-            print(f'Custo manhattan => {count2}')
-            print(f'Tempo manhattan => {final - inicio}\n')
+            #final = time.time()
+            #print(f'Expandidos manhattan => {count}')
+            #print(f'Custo manhattan => {count2}')
+            #print(f'Tempo manhattan => {final - inicio}\n')
             return caminho(v)
 
         if (v.estado not in eXplorados):
-            count += 1
-            count2 += v.custo
+            #count += 1
+            #count2 += v.custo
             eXplorados.add(v.estado)
             for nodo in expande(v):
                 counter+=1
@@ -255,7 +255,7 @@ def astar_manhattan(estado):
     return None
 
 
-bfs("2_3541687")
-dfs("2_3541687")
-astar_hamming("2_3541687")
-astar_manhattan("2_3541687")
+#bfs("2_3541687")
+#dfs("2_3541687")
+#astar_hamming("2_3541687")
+#astar_manhattan("2_3541687")

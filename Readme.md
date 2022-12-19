@@ -29,4 +29,7 @@ Nós expandidos: 1830
 Custo: 21002
 Tempo decorrido: 0.13503003120422363s
 
+Obs: Variáveis e prints definidos para contagem de nodos explorados, custo de busca e tempo de execução estão comentados
+no código de solucao.py para que não interfira na realização dos testes.
+
 
