@@ -15,7 +15,6 @@ class Nodo:
         :param acao:str, acao a partir do pai que leva a este nodo (None no caso do nó raiz)
         :param custo:int, custo do caminho da raiz até este nó
         """
-        # substitua a linha abaixo pelo seu codigo
         self.estado = estado
         self.pai = pai
         self.acao = acao
@@ -30,7 +29,6 @@ def sucessor(estado):
     :param estado:
     :return:
     """
-    # substituir a linha abaixo pelo seu codigo
     lista = []
 
     matriz = stringToMatrix3x3(estado)
@@ -71,7 +69,6 @@ def expande(nodo):
     :param nodo: objeto da classe Nodo
     :return:
     """
-    # substituir a linha abaixo pelo seu codigo
     listaNodos = []
 
     for tupla in sucessor(nodo.estado):
@@ -89,7 +86,6 @@ def bfs(estado):
     :param estado: str
     :return:
     """
-    # substituir a linha abaixo pelo seu codigo
     eXplorados = set()
     Fronteira = deque([Nodo(estado, None, None, 0)])
     #count = 0
@@ -99,10 +95,10 @@ def bfs(estado):
         v = Fronteira.popleft()
         
         if (v.estado == "12345678_"):
-            final = time.time()
+            #final = time.time()
             #print(f'Expandidos bfs => {count}')
             #print(f'Tempo bfs => {final-inicio}')
-            return caminho(v, 'bfs')
+            return caminho(v)
 
         if (v.estado not in eXplorados):
             #count += 1
@@ -121,12 +117,10 @@ def dfs(estado):
     :param estado: str
     :return:
     """
-    # substituir a linha abaixo pelo seu codigo
     eXplorados = set()
     Fronteira = deque([Nodo(estado, None, None, 0)])
     #count = 0
     
-
     #inicio = time.time()
     while (len(Fronteira) != 0):
         v = Fronteira.pop()
@@ -135,7 +129,7 @@ def dfs(estado):
             #final = time.time()
             #print(f'Expandidos dfs => {count}')
             #print(f'Tempo dfs => {final-inicio}')
-            return caminho(v, 'dfs')
+            return caminho(v)
 
         if (v.estado not in eXplorados):
             #count += 1
@@ -163,7 +157,6 @@ def astar_hamming(estado):
     :param estado: str
     :return:
     """
-    # substituir a linha abaixo pelo seu codigo
     eXplorados = set()
     Fronteira = []
     heappush(Fronteira, (0, 0, Nodo(estado, None, None, 0)))
@@ -178,7 +171,7 @@ def astar_hamming(estado):
             #final = time.time()
             #print(f'Expandidos hamming => {count}')
             #print(f'Tempo hamming => {final-inicio}')
-            return caminho(v, 'hamming')
+            return caminho(v)
 
         if (v.estado not in eXplorados):
             #count += 1
@@ -216,7 +209,6 @@ def astar_manhattan(estado):
     :param estado: str
     :return:
     """
-    # substituir a linha abaixo pelo seu codigo
     eXplorados = set()
     Fronteira = []
     heappush(Fronteira, (0, 0, Nodo(estado, None, None, 0)))
@@ -231,7 +223,7 @@ def astar_manhattan(estado):
             #final = time.time()
             #print(f'Expandidos manhattan => {count}')
             #print(f'Tempo manhattan => {final - inicio}')
-            return caminho(v, 'manhattan')
+            return caminho(v)
 
         if (v.estado not in eXplorados):
             #count += 1
