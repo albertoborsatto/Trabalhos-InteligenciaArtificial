@@ -1,3 +1,26 @@
+def hamming(str, objetivo):
+
+    counter = 0
+    for i in range(len(str)):
+        if str[i]!=objetivo[i]:
+            counter += 1
+
+    return counter  
+
+def manhattan(str, objetivo): 
+
+    str_matriz=stringToMatrix3x3(str)
+    objetivo_matriz=stringToMatrix3x3(objetivo)
+    counter = 0
+    for i in range(len(str_matriz)):
+        for j in range(len(str_matriz[i])):
+            for k in range(len(objetivo_matriz)):
+                for l in range(len(objetivo_matriz[k])):
+                    if(str_matriz[i][j]==objetivo_matriz[k][l] and str_matriz[i][j]!='_'):
+                        counter+=abs(i-k)+abs(j-l)
+                        break
+    return counter  
+
 def stringToMatrix3x3(string):
     matriz = []
     aux = []
@@ -19,14 +42,22 @@ def swap(entrada, i, j):
     return "".join(entrada)
     
 
-def caminho(nodo):
+def caminho(nodo, busca):
 
     listaCaminho = []
+    count = 0
     
     while nodo.pai is not None:
         listaCaminho.append(nodo.acao)
         nodo = nodo.pai
+        if(busca == 'hamming'):
+            count += nodo.custo + hamming(nodo.estado, "12345678_")
+        elif(busca == 'manhattan'):
+            count += nodo.custo + manhattan(nodo.estado, "12345678_")
+        else:
+            count += nodo.custo
         
     listaCaminho.reverse()
+    #print(f'Custo soluÃ§Ã£o => {count}\n\n')
 
     return listaCaminho
